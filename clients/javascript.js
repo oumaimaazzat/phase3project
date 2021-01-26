@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     getWizard()
+    addWizard()
 })
 
 function getWizard(){
@@ -36,6 +37,9 @@ function renderWizard(wizard){
     p2.className = 'card-text'
     p2.innerText = wizard.blood
 
+    let button = document.createElement('button')
+    button.
+
 
     container.append(div1)
     div1.appendChild(div2)
@@ -45,15 +49,29 @@ function renderWizard(wizard){
 }
 
 
+function addWizard(){
+    document.querySelector(".ui").addEventListener('submit', (event) => {
+        event.preventDefault() 
+        newWizard = {
+            name: event.target.name.value, 
+            age: event.target.age.value,
+            blood: event.target.blood.value,
+            image: event.target.photo.value
+        }
+        reqPackage = {
+            method: "POST", 
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(newWizard)
+        }
+        fetch("http://localhost:3000/wizards", reqPackage)
+        .then(res => res.json())
+        .then(newWizard => console.log(newWizard))
+
+    }
+
+    )
+
+}
 
 
-    // `<div class="col-sm m-2">
-            // <div class="card">
-                // <img src=${cat.image} class="card-img-top" alt="...">
-        //         <div class="card-body">
-        //                 // <h5 class="card-title">${cat.name}</h5>
-        //                 // <p class="card-text"><small class="text-muted">Breed: ${cat.breed}</small></p>
-        //         </div>
-        //     </div>
-        // </div>`
-
+   
