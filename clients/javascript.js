@@ -1,6 +1,9 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
     getWizard()
     addWizard()
+    popup()
 })
 
 function getWizard(){
@@ -41,6 +44,12 @@ function renderWizard(wizard){
     p2.id = `blood-${wizard.id}`
     p2.innerText = `Blood: ${wizard.blood}`
 
+    let button = document.createElement('button')
+    button.innerText = "Sort me"
+    button.classList.add("btn", "btn-primary")
+    button.addEventListener('click', () => getHouse(wizard))
+
+
     let a = document.createElement('a')
     a.classList.add("btn", "btn-primary")
     a.href=`#edit-wizard-${wizard.id}`
@@ -67,7 +76,8 @@ function renderWizard(wizard){
     container.append(div1)
     div1.appendChild(div2)
     div2.append(img, div3)
-    div3.append(h5, p1, p2, a, edit_form)
+    div3.append(h5, p1, p2, button, a, edit_form)
+
     $(".btn").attr("data-toggle", "collapse");
     $(".btn").attr("role", "button");
     $(".btn").attr("aria-expanded", "false");
@@ -117,5 +127,44 @@ const updateWizard = (event, wizard) => {
         document.getElementById(`blood-${wizard.id}`).innerText = wizard.blood
     })
      document.getElementById(`edit-wizard-${wizard.id}`).classList.remove("show");
-     $(".btn").attr("aria-expanded", "false");
+
 }
+
+
+
+function getHouse(wizard) {
+    newWizHouse = {
+        wizard_id: wizard.id
+    }
+    // debugger
+    fetch("http://localhost:3000/wiz_houses", {
+        headers: {"Content-Type": "application/json"},
+        method: "POST",
+        body: JSON.stringify(newWizHouse)
+    })
+    .then(res => res.json())
+    .then(wizHouse => {
+        console.log(wizHouse)
+    })
+}
+
+
+
+
+
+
+
+const popup = () => {
+    let modal = document.getElementById("myModal");
+    let btn = document.querySelector(".header");
+    let span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+    modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+}
+

@@ -33,3 +33,102 @@
     height: 15vw;
     margin: auto;
 }
+
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 600px; /* Full width */
+  height: 600px; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal .description-box {
+	font-size: 1em;
+}
+
+
+/* The Close Button */
+
+
+
+/* Pop-up section */
+
+.popup-modal {
+	max-width: 550px;
+	background: #FFFFFF;
+	position: relative;
+	margin: 0 auto;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.popup-modal .media {
+	position: relative;
+}
+.popup-modal img {
+	vertical-align: bottom;
+}
+.popup-modal .description-box {
+	padding: 1.8rem 3.6rem 3rem;
+}
+.popup-modal .description-box h4 {
+	font-family: "poppins-bold", sans-serif;
+	font-size: 1.5rem;
+	line-height: 2.4rem;
+	margin-bottom: .6rem;
+}
+.popup-modal .description-box p {
+	font-family: "poppins-regular", sans-serif;
+	font-size: 1.0rem;
+	line-height: 2.4rem;
+	margin-bottom: 12px;
+}
+
+.popup-modal .link-box {
+	width: 50%;
+	margin: auto;
+	overflow: hidden;
+	background: #000000;
+}
+.popup-modal .link-box a {
+	font-family: "poppins-bold";
+	font-size: 0.8rem;
+	line-height: 3rem;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	cursor: pointer;
+	display: block;
+	text-align: center;
+	float: left;
+	width: 50%;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+  /* border-right: 1px solid rgba(200, 200, 200, 0.1); */
+}
+
+.popup-modal .link-box a:hover {
+	background: #cc005f;
+	border: none;
+}
+@media only screen and (max-width:600px) {
+	.popup-modal {
+		width: auto;
+		margin: 0 20px;
+	}
+}
