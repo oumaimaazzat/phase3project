@@ -5,7 +5,10 @@ Rails.application.routes.draw do
     post "/wizards", to: "wizards#create"
     patch "/wizards/:id", to: "wizards#edit"
 
+    get "/houses", to: "houses#index"
+    get "/wiz_houses", to: "wiz_houses#index"
 
+    post "wiz_houses", to: "wiz_houses#create"
 
 
 end

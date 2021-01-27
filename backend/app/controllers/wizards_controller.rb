@@ -7,7 +7,8 @@ class WizardsController < ApplicationController
     end 
 
     def create
-        Wizard.create(wizard_params)
+        wizard = Wizard.create(wizard_params)
+        render json: wizard
     end 
 
     def edit
