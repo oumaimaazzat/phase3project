@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
     get "/wizards", to: "wizards#index"
     post "/wizards", to: "wizards#create"
+    patch "/wizards/:id", to: "wizards#edit"
 
 
 

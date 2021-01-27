@@ -7,11 +7,17 @@ class WizardsController < ApplicationController
     end 
 
     def create
-        Wizard.create(wizards_param)
+        Wizard.create(wizard_params)
     end 
+
+    def edit
+        wizard = Wizard.find(params[:id])
+        wizard.update(name: wizard_params[:name], age: wizard_params[:age], blood: wizard_params[:blood])
+        render json: wizard
+    end
     private
 
-    def wizards_param
+    def wizard_params
         params.require(:wizard).permit(:name, :age, :blood, :image)
     end 
 end
