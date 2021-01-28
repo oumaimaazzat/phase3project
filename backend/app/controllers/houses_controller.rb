@@ -3,13 +3,13 @@ class HousesController < ApplicationController
 
     def index
         houses = House.all 
-        render json: houses
+        render json: HouseSerializer.new(houses).to_serialized_json
     end 
 
   
     private
 
-    def wizard_params
-        params.require(:wizard).permit(:name, :age, :blood, :image)
+    def house_params
+        params.require(:house).permit(:name)
     end 
 end

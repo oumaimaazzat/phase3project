@@ -3,13 +3,24 @@ class WizHousesController < ApplicationController
 
     def index
         wiz_houses = WizHouse.all 
-        render json: wiz_houses
+        render json: WizHouseSerializer.new(wiz_houses).to_serialized_json
     end 
+
+    def show 
+      wiz_house = WizHouse.find(params[:id])
+      render json: WizHouseSerializer.new(wiz_house).to_serialized_json
+    end
 
     def create
       # byebug
-      wiz_house = WizHouse.create(wizard_id: wiz_house_params[:wizard_id], house_id: rand(1..4))  
-      render json:wiz_house
+      wiz_house = WizHouse.new(wizard_id: wiz_house_params[:wizard_id], house_id: rand(1..4))  
+        if wiz_house.save
+          render json: WizHouseSerializer.new(wiz_house).to_serialized_json
+        end
+    end
+
+    def delete
+      WizHouse.find(params[:id]).destroy
     end
 
     private

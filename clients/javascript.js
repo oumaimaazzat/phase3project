@@ -3,7 +3,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     getWizard()
     addWizard()
-    popup()
 })
 
 function getWizard(){
@@ -28,6 +27,7 @@ function renderWizard(wizard){
 
     let div3 = document.createElement('div')
     div3.className = "card-body"
+    div3.id = `body-${wizard.id}`
 
     let h5 = document.createElement('h5')
     h5.className = "card-title"
@@ -43,15 +43,62 @@ function renderWizard(wizard){
     p2.className = 'card-text'
     p2.id = `blood-${wizard.id}`
     p2.innerText = `Blood: ${wizard.blood}`
-
+    
     let button = document.createElement('button')
     button.innerText = "Sort me"
-    button.classList.add("btn", "btn-primary")
-    button.addEventListener('click', () => getHouse(wizard))
+    
+    button.classList.add("btn", "btn-primary", "btn-sm")
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (button.innerText == "SORT ME" ) {
+            button.innerText = "LEAVE THE HOUSE"
+            sortHouse(wizard)
+        } else {
+            button.innerText = "SORT ME"
+            leaveHouse(event)
+        }
+    })
+    
+    let p3 = document.createElement('p')
+    p3.className = 'card-text'
+    p3.id = `house-${wizard.id}`
+    p3.innerText = "House: Undefined"
+    if (wizard.house) {
+        p3.innerText = `House: ${wizard.house.name}`
+        button.id = `sort-${wizard.wiz_house.id}`
+        button.innerText = "Leave the house"
+    }
 
+    // Show house part
+    // let div_sub = document.createElement('div')	
+    // div_sub.id = "myModal";
+    // div_sub.classList.add("modal", "popup-modal", "slider", "mfp-hide")
+
+    // let div_sub_1 = document.createElement('div')
+    // div_sub_1.className = "media"
+    // let div_sub_img = document.createElement('img')
+    // div_sub_img.src = "images/w.jpeg"
+    
+    // let div_sub_2 = document.createElement('div')
+    // div_sub_2.className = "description-box"
+    // let div_sub_h4 = document.createElement('h4')
+    // div_sub_h4.innerText = "Gryffindor"
+    
+    // let div_sub_3 = document.createElement('div')
+    // div_sub_3.className = "link-box"
+    // let div_sub_a = document.createElement('a')
+    // div_sub_a.className = `close-${wizard.id}`
+    // div_sub_a.innerText = "Close"
+
+    // div_sub.append(div_sub_1, div_sub_2, div_sub_3)
+    // div_sub_3.appendChild(div_sub_a)
+    // div_sub_2.appendChild(div_sub_h4)
+    // div_sub_1.appendChild(div_sub_img)
+    // End show house part
+    
 
     let a = document.createElement('a')
-    a.classList.add("btn", "btn-primary")
+    a.classList.add("btn", "btn-primary", "btn-sm")
     a.href=`#edit-wizard-${wizard.id}`
     a.innerText = "Update Wizard!"
    
@@ -59,29 +106,54 @@ function renderWizard(wizard){
     let edit_form = document.createElement('form')
     edit_form.id = `edit-wizard-${wizard.id}`
     edit_form.classList.add("collapse", "multi-collapse")
-    edit_form.innerHTML = `<div class="form-group">
-                <label for="Name">Name</label>
-                <input type="text" value = "${wizard.name}" class="form-control" id="name" aria-describedby="nameInput">
-                <label for="Age">Age</label>
-                <input type="text" value = "${wizard.age}" class="form-control" id="age" aria-describedby="nameInput">
-                <label for="Blood">Blood</label>
-                <input type="text" value = "${wizard.blood}" class="form-control" id="blood" aria-describedby="nameInput">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>`
+
+    let div4 = document.createElement('div')
+    div4.className = "form-group"
+
+    let arr = ["name", "age", "blood"];
+    arr.forEach(ele => {
+        let label = document.createElement('label')
+        label.innerText = ele[0].toUpperCase() + ele.slice(1)
+
+        let input = document.createElement('input')
+        input.type = "text"
+        input.className = "form-control"
+        input.id = ele
+        input.value = wizard[ele]
+
+        div4.append(label, input)
+        
+    })
+    
+    let buttonUpdate = document.createElement('button')
+    buttonUpdate.type = "submit"
+    buttonUpdate.classList.add("btn", "btn-primary")
+    buttonUpdate.innerText = "Submit"
+
     edit_form.addEventListener('submit', (event) => {
         event.preventDefault();
         updateWizard(event, wizard);
     })
-
+    // p3.appendChild(div_sub)
     container.append(div1)
     div1.appendChild(div2)
     div2.append(img, div3)
-    div3.append(h5, p1, p2, button, a, edit_form)
+    edit_form.append(div4, buttonUpdate)
+    div3.append(h5, p1, p2, p3, button, a, edit_form)
 
     $(".btn").attr("data-toggle", "collapse");
     $(".btn").attr("role", "button");
     $(".btn").attr("aria-expanded", "false");
     $(".btn").attr("aria-controls", "collapseFormButton");
+
+    // p3.addEventListener('click', () => {
+    //     div_sub.style.display = "block";
+    // })
+    
+    // div_sub_a.addEventListener('click', () => {
+    //     div_sub.style.display = "none";
+    // })
+
 
 }
 
@@ -103,7 +175,7 @@ function addWizard(){
         fetch("http://localhost:3000/wizards", reqPackage)
         .then(res => res.json())
         .then(renderWizard)
-
+        document.querySelector('.form').reset()
     })
 
 }
@@ -123,8 +195,8 @@ const updateWizard = (event, wizard) => {
     .then(res => res.json())
     .then(wizard => {
         document.getElementById(`name-${wizard.id}`).innerText = wizard.name
-        document.getElementById(`age-${wizard.id}`).innerText = wizard.age
-        document.getElementById(`blood-${wizard.id}`).innerText = wizard.blood
+        document.getElementById(`age-${wizard.id}`).innerText = `Age: ${wizard.age}`
+        document.getElementById(`blood-${wizard.id}`).innerText = `Blood: ${wizard.blood}`
     })
      document.getElementById(`edit-wizard-${wizard.id}`).classList.remove("show");
 
@@ -132,7 +204,7 @@ const updateWizard = (event, wizard) => {
 
 
 
-function getHouse(wizard) {
+function sortHouse(wizard) {
     newWizHouse = {
         wizard_id: wizard.id
     }
@@ -144,27 +216,37 @@ function getHouse(wizard) {
     })
     .then(res => res.json())
     .then(wizHouse => {
-        console.log(wizHouse)
+        // debugger
+        document.querySelector(`#house-${wizHouse.wizard_id}`).innerText = `House: ${wizHouse.house.name}`
+        document.querySelector(`#body-${wizard.id}`).childNodes[4].id = `sort-${wizHouse.id}`
     })
 }
 
 
-
-
-
-
-
-const popup = () => {
-    let modal = document.getElementById("myModal");
-    let btn = document.querySelector(".header");
-    let span = document.getElementsByClassName("close")[0];
-
-    btn.onclick = function() {
-    modal.style.display = "block";
-    }
-
-    span.onclick = function() {
-    modal.style.display = "none";
-    }
+function leaveHouse(event) {
+    // debugger
+    wiz_house_id = parseInt(event.target.id.split("-")[1])
+    fetch(`http://localhost:3000/wiz_houses/${wiz_house_id}`, {
+        method: "DELETE"
+    })
+    .then(event.target.parentNode.childNodes[3].innerText = "House: Undefined")
 }
 
+
+
+// const popup = () => {
+//     let modal = document.getElementById("myModal");
+//     let btn = document.querySelector(".header");
+//     let span = document.getElementsByClassName("close-popup")[0];
+
+//     btn.onclick = function() {
+//     modal.style.display = "block";
+//     }
+
+//     span.onclick = function() {
+//     modal.style.display = "none";
+//     }
+// }
+
+
+   
