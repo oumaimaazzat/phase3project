@@ -16,6 +16,7 @@
   </head>
   <body>
 
+    <section id="intro">
     <div class="center"><h1 class="header">Welcome to Hogwarts<h1>
       <audio src="music/harry_potter_theme.mp3" preload="auto" controls>	
       <embed name="GoodEnough" src="/music/harry_potter_theme.mp3" loop="true" hidden="true" autostart="true">
@@ -28,9 +29,12 @@
         <div id="main" class="row mt-4 d-flex">
               <div class="col-sm mt-2">
                 <div class="eighty p-3">
-                  <form class="ui form">
+                  <a class="btn btn-primary" data-toggle="collapse" href="#create-wizard-form" role="button" aria-expanded="false" aria-controls="collapseFormButton">Become a Wizard</a>
+                  <form id = 'create-wizard-form' class="ui1 form collapse multi-collapse">
                     <div class="form-group">
-                      <h3>Become a Wizard</h3>
+                      <input name="email" class="form-control mb-2" type="text"placeholder="Email">
+                      <input name="password" class="form-control mb-2" type="text"placeholder="Password">
+                      <input name="password_confirmation" class="form-control mb-2" type="text"placeholder="Password Confirmation">
                       <input name="name" class="form-control mb-2" type="text"placeholder="Name">
                       <input name="age" class="form-control mb-2" type="text"placeholder="Age">
                       <input name="blood" class="form-control mb-2" type="text" placeholder="Blood">
@@ -40,12 +44,23 @@
                   </form>
                 </div>
               </div>
-              
-              
-            </div>
-            
-            </div>
+              <div class="col-sm mt-2">
+                <div class="eighty p-3">
+                  <a class="btn btn-primary" data-toggle="collapse" href="#prove-wizard-form" role="button" aria-expanded="false" aria-controls="collapseFormButton">Prove you are a Wizard</a>
+                  <form id="prove-wizard-form" class="ui2 form collapse multi-collapse">
+                    <div class="form-group">
+                      <input name="email" class="form-control mb-2" type="text"placeholder="Email">
+                      <input name="password" class="form-control mb-2" type="text"placeholder="Password">
+                      <input class="btn btn-primary" type="submit">
+                    </div>
+                  </form>
+                </div>
+              </div>
+          </div>
+        </div>
+    </section>
 
+    <section id="wizard-infomation">
             <div id="wizard-display" class="container mt-5 p-3">
               <div class="justify-content-center">
                 <h3 class="text-light">Meet the Wizards<h3>
@@ -53,13 +68,28 @@
               <div id="wizard-container" class="row">
               </div>
             </div>
+    </section>
 
-      </div>
+    <section id="pets-infomation">
+            <div id="pet-display" class="container mt-5 p-3">
+              <div class="justify-content-center">
+                <h3 class="text-light">All pets<h3>
+              </div>
+              <div id="pets-container" class="row">
+              </div>
+            </div>
+    </section>
 
+    <section id="books-infomation">
+            <div id="book-display" class="container mt-5 p-3">
+              <div class="justify-content-center">
+                <h3 class="text-light">All books<h3>
+              </div>
+              <div id="books-container" class="row">
+              </div>
+            </div>
+    </section>
 
-<!-- <div id="myModal" class="modal"> -->
-
-<!-- </div> -->
 
 
     <script type="text/javascript" src="javascript.js"></script>

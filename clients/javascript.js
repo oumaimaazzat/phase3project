@@ -1,8 +1,9 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    getWizard()
     addWizard()
+    proveWizard()
+    // getWizard()
 })
 
 function getWizard(){
@@ -159,9 +160,12 @@ function renderWizard(wizard){
 
 
 function addWizard(){
-    document.querySelector(".ui").addEventListener('submit', (event) => {
+    document.querySelector(".ui1").addEventListener('submit', (event) => {
         event.preventDefault() 
         newWizard = {
+            email: event.target.email.value, 
+            password: event.target.password.value, 
+            password_confirmation: event.target.password_confirmation.value, 
             name: event.target.name.value, 
             age: event.target.age.value,
             blood: event.target.blood.value,
@@ -175,10 +179,45 @@ function addWizard(){
         fetch("http://localhost:3000/wizards", reqPackage)
         .then(res => res.json())
         .then(renderWizard)
-        document.querySelector('.form').reset()
+        document.querySelector('.ui1').reset()
+    })
+}
+
+
+function proveWizard(){
+     let form = document.querySelector(".ui2")
+     form.addEventListener('submit', (event) => {
+        event.preventDefault()
+        if (Object.values(form.children).find((child) => child.id == "alert-wrong-pw")){
+            Object.values(form.children).find((child) => child.id == "alert-wrong-pw").remove()
+        }
+        checkWizard = {
+            email: event.target.email.value, 
+            password: event.target.password.value
+        }
+        reqPackage = {
+            method: "POST", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(checkWizard)
+        }
+        fetch("http://localhost:3000/login", reqPackage)
+        .then(res => res.json())
+        .then(wizard => {
+            if (wizard.status) {
+                let p = document.createElement('p')
+                p.id = "alert-wrong-pw"
+                p.innerText = "Wrong password"
+                form.appendChild(p)
+                
+            } else {
+                renderWizard(wizard)
+            }
+        })
+        document.querySelector('.ui2').reset()
     })
 
 }
+
 
 const updateWizard = (event, wizard) => {
     editWizard = {

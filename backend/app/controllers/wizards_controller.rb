@@ -7,13 +7,18 @@ class WizardsController < ApplicationController
     end 
 
     def show 
-        wizard = Wizard.find(session[:id])
+        wizard = Wizard.find(params[:id])
         render json: WizardSerializer.new(wizard).to_serialized_json
+    end
+
+    def new
+        @wizard = Wizard.new
     end
 
     def create
         wizard = Wizard.create(wizard_params)
-        session[:id] = @user.id
+
+        session[:id] = wizard.id
         render json: WizardSerializer.new(wizard).to_serialized_json
     end 
 
@@ -25,6 +30,6 @@ class WizardsController < ApplicationController
     private
 
     def wizard_params
-        params.require(:wizard).permit(:email, :password, :password_confirmation, :name, :age, :blood, :image)
+        params.permit(:email, :password, :password_confirmation, :name, :age, :blood, :image)
     end 
 end

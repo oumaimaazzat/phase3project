@@ -5,20 +5,19 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @wizard = Wizard.find_by(email: params[:wizard][:email])
-        if @wizard && @wizard.authenticate(params[:wizard][:password])
-            session[:id] = @wizard.id
-            render json:@wizard
+      # byebug
+        wizard = Wizard.find_by(email: params[:email])
+        if wizard && wizard.authenticate(params[:password])
+            session[:id] = wizard.id
+            render json: WizardSerializer.new(wizard).to_serialized_json
         else
-            flash[:errors] = "Email or password is incorrect."
-            redirect_to login_path
+            render json: {status:401}
         end
     end
 
-    def destroy
-        session.clear
-        redirect_to "/"
-    end
+    # def destroy
+    #     session.clear
+    # end
 end
 
 
