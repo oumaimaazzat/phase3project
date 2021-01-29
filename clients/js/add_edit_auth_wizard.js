@@ -22,7 +22,7 @@ const proveWizard = () => {
             if (res_status.status != 200) {
                 let p = document.createElement('p')
                 p.id = "alert-wrong-pw"
-                p.innerText = "Wrong Wizard Code. Are you Voldemort?"
+                p.innerText = "Wrong Wizard Code. Are you a Traitor?"
                 form.appendChild(p)
                 
             } else {
@@ -33,7 +33,7 @@ const proveWizard = () => {
                 getWands(wizard);
                 getBooks(wizard);
                 form.classList.remove('show')
-
+                playaudio(0.1);
             }
         })
         form.reset()

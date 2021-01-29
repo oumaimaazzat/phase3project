@@ -1,24 +1,41 @@
 /*Intro Part*/
 
 #intro {
-	background: #151515 url(../images/intro-bg.jpg) no-repeat center bottom;
+	background: url(../images/harry/1267875.jpg) no-repeat center bottom;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
 	width: 100%;
 	height: 100%;
-	min-height: 1300px;
+	min-height: 1400px;
 	display: table;
 	position: relative;
 	text-align: center;
 }
 
+#wands-information {
+	background: url(../images/harry/bookstore.png) no-repeat center bottom;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-attachment: fixed;
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+	width: 100%;
+	display: table;
+	height: 80%;
+	min-height: 1500px;
+	text-align: center;
+	position: relative;
+}
+
+
 #intro .header h1 {
 
     text-align: center;
     font-size: 50px;
-		padding-top: 200px;
+		padding-top: 100px;
+		padding-bottom: 120px;
 		color: #cc005f;
 		
 	
@@ -27,6 +44,7 @@
 
 
 #wizard-infomation {
+	background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
@@ -34,13 +52,14 @@
 	padding-top: 5rem;
 	padding-bottom: 5rem;
 	width: 100%;
-	height: auto;
-	min-height: 1000px;
+	height: 80%;
+	min-height: 1500px;
 	text-align: center;
 	position: relative;
 }
 
 #books-information {
+	background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
@@ -49,25 +68,11 @@
 	padding-bottom: 5rem;
 	width: 100%;
 	height: auto;
-	min-height: 2100px;
+	min-height: 2300px;
 	text-align: center;
 	position: relative;
 }
 
-#wands-information {
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	background-size: auto;
-	background-attachment: fixed;
-	padding-top: 5rem;
-	padding-bottom: 5rem;
-	width: 100%;
-	display: table;
-	height: auto;
-	min-height: 1300px;
-	text-align: center;
-	position: relative;
-}
 
 #pets-infomation {
 	-webkit-background-size: cover;
@@ -158,7 +163,7 @@
 
 .container #main .p-3 {
 	text-align: center;
-	background-color: rgb(153, 149, 149);
+	background-color: rgb(130, 175, 187);
 }
 
 #alert-wrong-pw {
@@ -181,85 +186,6 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal .description-box {
-	font-size: 1em;
-}
-
-/* The Close Button */
-
-
-
-/* Pop-up section */
-
-.popup-modal {
-	max-width: 700px;
-	background: #FFFFFF;
-	position: relative;
-	margin: 0 auto;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-	-ms-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}
-.popup-modal .media {
-	position: relative;
-}
-.popup-modal img {
-	vertical-align: bottom;
-}
-.popup-modal .description-box {
-	padding: 1.8rem 3.6rem 1rem;
-}
-.popup-modal .description-box h4 {
-	font-family: "poppins-bold", sans-serif;
-	font-size: 1.5rem;
-	margin-bottom: .6rem;
-}
-.popup-modal .description-box p {
-	font-family: "poppins-regular", sans-serif;
-	font-size: 1.0rem;
-	line-height: 1.8rem;
-	margin-bottom: 12px;
-}
-
-.popup-modal .link-box {
-	width: 50%;
-	margin: auto;
-	overflow: hidden;
-	background: #000000;
-}
-.popup-modal .link-box a {
-	font-family: "poppins-bold";
-	font-size: 0.8rem;
-	line-height: 3rem;
-	color: #FFFFFF;
-	text-transform: uppercase;
-	letter-spacing: 4px;
-	cursor: pointer;
-	display: block;
-	text-align: center;
-	float: left;
-	width: 50%;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-	-ms-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-  /* border-right: 1px solid rgba(200, 200, 200, 0.1); */
-}
-
-.popup-modal .link-box a:hover {
-	background: #cc005f;
-	border: none;
-}
-@media only screen and (max-width:600px) {
-	.popup-modal {
-		width: auto;
-		margin: 0 20px;
-	}
-}
-
 
 .card .btn {
 	font-size: 0.5rem;
@@ -270,3 +196,7 @@
 .form-group .form-control {
 	color: rgb(148, 48, 69);
 }
+
+
+
+/*Transition Part*/

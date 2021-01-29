@@ -5,9 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
     addWizard()
     proveWizard()
     proveHouse()
+    
 })
 
 
+const playaudio = (n) => {
+    let audio = document.querySelector("audio")
+    audio.volume = n
+    audio.play()
+}
 
 
 
@@ -15,22 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
-// const popup = () => {
-//     let modal = document.getElementById("myModal");
-//     let btn = document.querySelector(".header");
-//     let span = document.getElementsByClassName("close-popup")[0];
-
-//     btn.onclick = function() {
-//     modal.style.display = "block";
-//     }
-
-//     span.onclick = function() {
-//     modal.style.display = "none";
-//     }
-// }
 
 
    

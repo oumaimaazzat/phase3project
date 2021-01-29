@@ -23,13 +23,15 @@ const proveHouse = () => {
             if (res_status.status != 200) {
                 let p = document.createElement('p')
                 p.id = "alert-wrong-pw"
-                p.innerText = "Wrong House Code. Are you Dumbledore?"
+                p.innerText = "Wrong House Code. Are you Voldermort?"
                 alert_form.appendChild(p)
                 
             } else {
                 let house = JSON.parse(res_status.house)
-                getWizard(house)
                 alert_form.classList.remove('show')
+                playaudio(0.1)
+                getWizard(house)
+
             }
         })
         alert_form.reset()

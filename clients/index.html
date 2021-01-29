@@ -11,15 +11,21 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+<script>
+window.onload = function() {
+  var context = new AudioContext();
+}
+</script>
   
   </head>
   <body>
-
     <section id="intro">
-    
+      <div style="display:none;">
+        <audio width="200" controls>
+          <source src="music/harry_potter_theme.mp3" type="audio/mp3">
+        </audio>
+      </div>
       <div class="header"><h1>Welcome to Hogwarts<h1>
-   
       </div>              
 
 
@@ -31,8 +37,8 @@
                   <form id = 'create-wizard-form' class="ui1 form collapse multi-collapse">
                     <div class="form-group">
                       <input name="name" class="form-control mb-2" type="text"placeholder="Name">
-                      <input name="password" class="form-control mb-2" type="text"placeholder="Wizard Code">
-                      <input name="password_confirmation" class="form-control mb-2" type="text"placeholder="Wizard Code Confirmation">
+                      <input name="password" class="form-control mb-2" type="password"placeholder="Wizard Code">
+                      <input name="password_confirmation" class="form-control mb-2" type="password"placeholder="Wizard Code Confirmation">
                       <input name="age" class="form-control mb-2" type="text"placeholder="Age">
                       <input name="blood" class="form-control mb-2" type="text" placeholder="Blood">
                       <input name="photo" class="form-control mb-2" type="text" placeholder="Photo">
@@ -47,7 +53,7 @@
                   <form id="prove-wizard-form" class="ui2 form collapse multi-collapse">
                     <div class="form-group">
                       <input name="name" class="form-control mb-2" type="text"placeholder="Name">
-                      <input name="password" class="form-control mb-2" type="text"placeholder="Wizard Code">
+                      <input name="password" class="form-control mb-2" type="password"placeholder="Wizard Code">
                       <input class="btn btn-primary" type="submit">
                     </div>
                   </form>
@@ -59,7 +65,7 @@
                   <form id="prove-house-form" class="ui3 form collapse multi-collapse">
                     <div class="form-group">
                       <input name="name" class="form-control mb-2" type="text"placeholder="House Name">
-                      <input name="password" class="form-control mb-2" type="text"placeholder="House Code">
+                      <input name="password" class="form-control mb-2" type="password"placeholder="House Code">
                       <input class="btn btn-primary" type="submit">
                     </div>
                   </form>
