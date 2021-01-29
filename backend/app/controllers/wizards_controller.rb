@@ -16,10 +16,18 @@ class WizardsController < ApplicationController
     end
 
     def create
-        wizard = Wizard.create(wizard_params)
-
-        session[:id] = wizard.id
-        render json: WizardSerializer.new(wizard).to_serialized_json
+        wizard = Wizard.new(wizard_params)
+        if wizard.save
+            session[:id] = wizard.id
+            render json: {
+                status: 200,
+                session_id: session[:id],
+                wizard: WizardSerializer.new(wizard).to_serialized_json
+                }
+        else
+            # byebug
+            render json: {status: 401, errors: wizard.errors.full_messages}
+        end
     end 
 
     def edit
@@ -30,6 +38,6 @@ class WizardsController < ApplicationController
     private
 
     def wizard_params
-        params.permit(:email, :password, :password_confirmation, :name, :age, :blood, :image)
+        params.permit(:password, :password_confirmation, :name, :age, :blood, :image)
     end 
 end

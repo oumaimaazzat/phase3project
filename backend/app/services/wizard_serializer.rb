@@ -8,6 +8,8 @@ class WizardSerializer
     @wizard.to_json(
             :include => {
                 :house => {:only => [:name]},
+                :books => {:only => [:name]},
+                :wand => {:except => [:created_at, :updated_at]},
                 :wiz_house => {:only => [:id]}
                     },
             :except => [:created_at, :updated_at]

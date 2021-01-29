@@ -8,13 +8,25 @@ Rails.application.routes.draw do
 
     get "/houses", to: "houses#index"
 
-    get "/wiz_houses", to: "wiz_houses#index"
-    get "/wiz_houses/:id", to: "wiz_houses#show"
-    post "wiz_houses", to: "wiz_houses#create"
-    delete "wiz_houses/:id", to: "wiz_houses#delete"
+    get "/wizhouses", to: "wiz_houses#index"
+    get "/wizhouses/:id", to: "wiz_houses#show"
+    post "wizhouses", to: "wiz_houses#create"
+    delete "wizhouses/:id", to: "wiz_houses#delete"
 
-    # get '/login', to: 'sessions#new'
-    post '/login', to: 'sessions#create'
+    #check authorization routes
+    post '/checkwizard', to: 'sessions#create'
+    post '/checkhouse', to: 'sessions#createhouse'
     delete '/logout', to: 'sessions#destroy'
 
+    get "/books", to: "books#index"
+    get "/books/:id", to: "books#show"
+
+    get "wizbooks", to: "wiz_books#index"
+    post "wizbooks", to: "wiz_books#create"
+
+    get "/wands", to: "wands#index"
+    get "/wands/:id", to: "wands#show"
+
+    get "wizwands", to: "wiz_wands#index"
+    post "wizwands", to: "wiz_wands#create"
 end

@@ -13,7 +13,7 @@ class WizHousesController < ApplicationController
 
     def create
       # byebug
-      wiz_house = WizHouse.new(wizard_id: wiz_house_params[:wizard_id], house_id: rand(1..4))  
+      wiz_house = WizHouse.new(wizard_id: wiz_house_params[:wizard_id], house_id: House.all[rand(0..3)].id)  
         if wiz_house.save
           render json: WizHouseSerializer.new(wiz_house).to_serialized_json
         end

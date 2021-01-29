@@ -1,18 +1,17 @@
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    addWizard()
-    proveWizard()
-    // getWizard()
-})
 
-function getWizard(){
-    fetch("http://localhost:3000/wizards")
+const getWizard = (house) => {
+    fetch(`${URL}/wizards`)
     .then(res => res.json())
-    .then(wizards => wizards.forEach(wizard => renderWizard(wizard)))
+    .then(wizards => {
+        wizards.forEach(wizard => {
+            if (wizard.house && wizard.house.name == house.name) {renderWizard(wizard)}
+        })
+    })
 }
 
-function renderWizard(wizard){
+const renderWizard = (wizard) => {
     let container = document.getElementById("wizard-container")
 
     let div1 = document.createElement('div')
@@ -25,6 +24,7 @@ function renderWizard(wizard){
     let img = document.createElement('img')
     img.src = wizard.image
     img.className = 'card-img-top'
+    img.id = "wizard-image"
 
     let div3 = document.createElement('div')
     div3.className = "card-body"
@@ -159,133 +159,3 @@ function renderWizard(wizard){
 }
 
 
-function addWizard(){
-    document.querySelector(".ui1").addEventListener('submit', (event) => {
-        event.preventDefault() 
-        newWizard = {
-            email: event.target.email.value, 
-            password: event.target.password.value, 
-            password_confirmation: event.target.password_confirmation.value, 
-            name: event.target.name.value, 
-            age: event.target.age.value,
-            blood: event.target.blood.value,
-            image: event.target.photo.value
-        }
-        reqPackage = {
-            method: "POST", 
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(newWizard)
-        }
-        fetch("http://localhost:3000/wizards", reqPackage)
-        .then(res => res.json())
-        .then(renderWizard)
-        document.querySelector('.ui1').reset()
-    })
-}
-
-
-function proveWizard(){
-     let form = document.querySelector(".ui2")
-     form.addEventListener('submit', (event) => {
-        event.preventDefault()
-        if (Object.values(form.children).find((child) => child.id == "alert-wrong-pw")){
-            Object.values(form.children).find((child) => child.id == "alert-wrong-pw").remove()
-        }
-        checkWizard = {
-            email: event.target.email.value, 
-            password: event.target.password.value
-        }
-        reqPackage = {
-            method: "POST", 
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(checkWizard)
-        }
-        fetch("http://localhost:3000/login", reqPackage)
-        .then(res => res.json())
-        .then(wizard => {
-            if (wizard.status) {
-                let p = document.createElement('p')
-                p.id = "alert-wrong-pw"
-                p.innerText = "Wrong password"
-                form.appendChild(p)
-                
-            } else {
-                renderWizard(wizard)
-            }
-        })
-        document.querySelector('.ui2').reset()
-    })
-
-}
-
-
-const updateWizard = (event, wizard) => {
-    editWizard = {
-        name: event.target.name.value,
-        age: event.target.age.value,
-        blood: event.target.blood.value
-    }
-
-    fetch(`http://localhost:3000/wizards/${wizard.id}`, {
-        headers: {"Content-Type": "application/json"},
-        method: "PATCH",
-        body: JSON.stringify(editWizard)
-    })
-    .then(res => res.json())
-    .then(wizard => {
-        document.getElementById(`name-${wizard.id}`).innerText = wizard.name
-        document.getElementById(`age-${wizard.id}`).innerText = `Age: ${wizard.age}`
-        document.getElementById(`blood-${wizard.id}`).innerText = `Blood: ${wizard.blood}`
-    })
-     document.getElementById(`edit-wizard-${wizard.id}`).classList.remove("show");
-
-}
-
-
-
-function sortHouse(wizard) {
-    newWizHouse = {
-        wizard_id: wizard.id
-    }
-    // debugger
-    fetch("http://localhost:3000/wiz_houses", {
-        headers: {"Content-Type": "application/json"},
-        method: "POST",
-        body: JSON.stringify(newWizHouse)
-    })
-    .then(res => res.json())
-    .then(wizHouse => {
-        // debugger
-        document.querySelector(`#house-${wizHouse.wizard_id}`).innerText = `House: ${wizHouse.house.name}`
-        document.querySelector(`#body-${wizard.id}`).childNodes[4].id = `sort-${wizHouse.id}`
-    })
-}
-
-
-function leaveHouse(event) {
-    // debugger
-    wiz_house_id = parseInt(event.target.id.split("-")[1])
-    fetch(`http://localhost:3000/wiz_houses/${wiz_house_id}`, {
-        method: "DELETE"
-    })
-    .then(event.target.parentNode.childNodes[3].innerText = "House: Undefined")
-}
-
-
-
-// const popup = () => {
-//     let modal = document.getElementById("myModal");
-//     let btn = document.querySelector(".header");
-//     let span = document.getElementsByClassName("close-popup")[0];
-
-//     btn.onclick = function() {
-//     modal.style.display = "block";
-//     }
-
-//     span.onclick = function() {
-//     modal.style.display = "none";
-//     }
-// }
-
-
-   

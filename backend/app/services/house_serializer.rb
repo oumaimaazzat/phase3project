@@ -5,7 +5,8 @@ class HouseSerializer
 
   def to_serialized_json
     @house.to_json(
-            :include => {:wizards => {:only => [:id, :name]}},
+            :include => {:wizards => {
+                :except => [:created_at, :updated_at, :password_digest]}},
             :except => [:created_at, :updated_at]
         ) 
   end

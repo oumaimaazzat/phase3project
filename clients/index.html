@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Rails</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">    
+    <link rel="stylesheet" href="css/main.css">    
   
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
 
@@ -17,12 +17,10 @@
   <body>
 
     <section id="intro">
-    <div class="center"><h1 class="header">Welcome to Hogwarts<h1>
-      <audio src="music/harry_potter_theme.mp3" preload="auto" controls>	
-      <embed name="GoodEnough" src="/music/harry_potter_theme.mp3" loop="true" hidden="true" autostart="true">
-      </audio>
-    </div>
-
+    
+      <div class="header"><h1>Welcome to Hogwarts<h1>
+   
+      </div>              
 
 
       <div class="container">
@@ -32,10 +30,9 @@
                   <a class="btn btn-primary" data-toggle="collapse" href="#create-wizard-form" role="button" aria-expanded="false" aria-controls="collapseFormButton">Become a Wizard</a>
                   <form id = 'create-wizard-form' class="ui1 form collapse multi-collapse">
                     <div class="form-group">
-                      <input name="email" class="form-control mb-2" type="text"placeholder="Email">
-                      <input name="password" class="form-control mb-2" type="text"placeholder="Password">
-                      <input name="password_confirmation" class="form-control mb-2" type="text"placeholder="Password Confirmation">
                       <input name="name" class="form-control mb-2" type="text"placeholder="Name">
+                      <input name="password" class="form-control mb-2" type="text"placeholder="Wizard Code">
+                      <input name="password_confirmation" class="form-control mb-2" type="text"placeholder="Wizard Code Confirmation">
                       <input name="age" class="form-control mb-2" type="text"placeholder="Age">
                       <input name="blood" class="form-control mb-2" type="text" placeholder="Blood">
                       <input name="photo" class="form-control mb-2" type="text" placeholder="Photo">
@@ -49,8 +46,20 @@
                   <a class="btn btn-primary" data-toggle="collapse" href="#prove-wizard-form" role="button" aria-expanded="false" aria-controls="collapseFormButton">Prove you are a Wizard</a>
                   <form id="prove-wizard-form" class="ui2 form collapse multi-collapse">
                     <div class="form-group">
-                      <input name="email" class="form-control mb-2" type="text"placeholder="Email">
-                      <input name="password" class="form-control mb-2" type="text"placeholder="Password">
+                      <input name="name" class="form-control mb-2" type="text"placeholder="Name">
+                      <input name="password" class="form-control mb-2" type="text"placeholder="Wizard Code">
+                      <input class="btn btn-primary" type="submit">
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-sm mt-2">
+                <div class="eighty p-3">
+                  <a class="btn btn-primary" data-toggle="collapse" href="#prove-house-form" role="button" aria-expanded="false" aria-controls="collapseFormButton">I am the head of house</a>
+                  <form id="prove-house-form" class="ui3 form collapse multi-collapse">
+                    <div class="form-group">
+                      <input name="name" class="form-control mb-2" type="text"placeholder="House Name">
+                      <input name="password" class="form-control mb-2" type="text"placeholder="House Code">
                       <input class="btn btn-primary" type="submit">
                     </div>
                   </form>
@@ -63,9 +72,29 @@
     <section id="wizard-infomation">
             <div id="wizard-display" class="container mt-5 p-3">
               <div class="justify-content-center">
-                <h3 class="text-light">Meet the Wizards<h3>
+                <h3 class="text-light">Remember, you are a Wizard<h3>
               </div>
               <div id="wizard-container" class="row">
+              </div>
+            </div>
+    </section>
+
+     <section id="wands-information">
+            <div id="wand-display" class="container mt-5 p-3">
+              <div class="justify-content-center">
+                <h3 class="text-light">Welcome to Ollivanders Wand Shop<h3>
+              </div>
+              <div id="wands-container" class="row">
+              </div>
+            </div>
+    </section>
+
+    <section id="books-information">
+            <div id="book-display" class="container mt-5 p-3">
+              <div class="justify-content-center">
+                <h3 class="text-light">Welcome to Flourish & Blotts<h3>
+              </div>
+              <div id="books-container" class="row">
               </div>
             </div>
     </section>
@@ -73,26 +102,25 @@
     <section id="pets-infomation">
             <div id="pet-display" class="container mt-5 p-3">
               <div class="justify-content-center">
-                <h3 class="text-light">All pets<h3>
+                <h3 class="text-light">Welcome to The Magical Menagerie<h3>
               </div>
               <div id="pets-container" class="row">
               </div>
             </div>
-    </section>
 
-    <section id="books-infomation">
-            <div id="book-display" class="container mt-5 p-3">
-              <div class="justify-content-center">
-                <h3 class="text-light">All books<h3>
-              </div>
-              <div id="books-container" class="row">
-              </div>
-            </div>
     </section>
 
 
 
-    <script type="text/javascript" src="javascript.js"></script>
+
+    
+    <script type="text/javascript" src="js/wizard.js"></script>
+    <script type="text/javascript" src="js/wand.js"></script>
+    <script type="text/javascript" src="js/collection.js"></script>
+    <script type="text/javascript" src="js/house.js"></script>
+    <script type="text/javascript" src="js/book.js"></script>
+    <script type="text/javascript" src="js/add_edit_auth_wizard.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
 
