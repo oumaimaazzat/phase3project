@@ -12,7 +12,15 @@ class WizWandsController < ApplicationController
     def create
       wiz_wand = WizWand.new(wiz_wand_params)
         if wiz_wand.save
-          render json: WizWandSerializer.new(wiz_wand).to_serialized_json
+          render json: {
+            wiz_wand: WizWandSerializer.new(wiz_wand).to_serialized_json,
+            status: 200
+          }
+        else 
+          render json: {
+            status: 401,
+            message: "You already has one"
+          }
         end
     end
 

@@ -11,8 +11,16 @@ class WizBooksController < ApplicationController
 
     def create
       wiz_book = WizBook.new(wiz_book_params)
-        if wiz_book.save
-          render json: WizBookSerializer.new(wiz_book).to_serialized_json
+       if wiz_book.save
+          render json: {
+            wiz_book: WizBookSerializer.new(wiz_book).to_serialized_json,
+            status: 200
+          }
+        else 
+          render json: {
+            status: 401,
+            message: wiz_book.errors.full_messages
+          }
         end
     end
 

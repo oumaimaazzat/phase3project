@@ -22,11 +22,13 @@ Rails.application.routes.draw do
     get "/books/:id", to: "books#show"
 
     get "wizbooks", to: "wiz_books#index"
+    get "wizbooks/:id", to: "wiz_books#show"
     post "wizbooks", to: "wiz_books#create"
 
     get "/wands", to: "wands#index"
     get "/wands/:id", to: "wands#show"
 
     get "wizwands", to: "wiz_wands#index"
+    get "wizwands/:id", to: "wiz_wands#show"
     post "wizwands", to: "wiz_wands#create"
 end
