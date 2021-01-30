@@ -29,9 +29,13 @@ const proveHouse = () => {
             } else {
                 let house = JSON.parse(res_status.house)
                 alert_form.classList.remove('show')
-                playaudio(0.1)
+                playaudio(0.05)
                 getWizard(house)
-
+                document.querySelector('#wizard-information').style.display = "block"
+                transition = document.querySelector(".transition")
+                transition.style.display = "block"
+                transition.childNodes[1].innerText = `All wizard of ${house.name}`
+                transition.childNodes[1].appendChild(document.createElement('span'))
             }
         })
         alert_form.reset()

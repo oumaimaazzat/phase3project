@@ -2,26 +2,24 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Rails</title>
+    <title>Harry Potter's World</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">    
+    <link rel="stylesheet" href="css/transition.css">
+
+        
   
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<script>
-window.onload = function() {
-  var context = new AudioContext();
-}
-</script>
   
   </head>
   <body>
-    <section id="intro">
+    <section id="intro" class="demo">
       <div style="display:none;">
-        <audio width="200" controls>
+        <audio width="200" controls loop>
           <source src="music/harry_potter_theme.mp3" type="audio/mp3">
         </audio>
       </div>
@@ -73,19 +71,26 @@ window.onload = function() {
               </div>
           </div>
         </div>
+      <div class="transition" >
+        <a href="#wizard-information"><span></span>You definitely a Wizard</a>
+      </div>
+
     </section>
 
-    <section id="wizard-infomation">
+    <section id="wizard-information" style="display: none;">
             <div id="wizard-display" class="container mt-5 p-3">
               <div class="justify-content-center">
-                <h3 class="text-light">Remember, you are a Wizard<h3>
+                <h3 class="text-light">Welcome to the magical world<h3>
               </div>
               <div id="wizard-container" class="row">
               </div>
             </div>
+       <div class="transition">
+        <a href="#wands-information"><span></span>Time to shopping at Diagon Alley</a>
+      </div>
     </section>
 
-     <section id="wands-information">
+     <section id="wands-information" style="display: none;">
             <div id="wand-display" class="container mt-5 p-3">
               <div class="justify-content-center">
                 <h3 class="text-light">Welcome to Ollivanders Wand Shop<h3>
@@ -93,9 +98,13 @@ window.onload = function() {
               <div id="wands-container" class="row">
               </div>
             </div>
+      <div class="transition">
+        <a href="#books-information"><span></span>Bring me to Book shop</a>
+      </div>
+        
     </section>
 
-    <section id="books-information">
+    <section id="books-information" style="display: none;">
             <div id="book-display" class="container mt-5 p-3">
               <div class="justify-content-center">
                 <h3 class="text-light">Welcome to Flourish & Blotts<h3>
@@ -104,19 +113,6 @@ window.onload = function() {
               </div>
             </div>
     </section>
-
-    <section id="pets-infomation">
-            <div id="pet-display" class="container mt-5 p-3">
-              <div class="justify-content-center">
-                <h3 class="text-light">Welcome to The Magical Menagerie<h3>
-              </div>
-              <div id="pets-container" class="row">
-              </div>
-            </div>
-
-    </section>
-
-
 
 
     

@@ -35,12 +35,12 @@ const renderBook = (book, wizard) => {
 
     let p1 = document.createElement('p')
     p1.className = 'card-text'
-    p1.id = `age-${book.id}`
+    p1.id = `author-${book.id}`
     p1.innerText = `Author: ${book.author}`
 
     let p2 = document.createElement('p')
     p2.className = 'card-text'
-    p2.id = `blood-${book.id}`
+    p2.id = `subject-${book.id}`
     p2.innerText = `Subject: ${book.subject}`
 
     let button = document.createElement('button')
@@ -80,8 +80,11 @@ const buyBook = (book) => {
     body: JSON.stringify(newWizBook)
   })
   .then(res => res.json())
-  .then(wizBook => {
-    
-    console.log(wizBook)
-  })
+  .then(res_status => {
+              wiz_book = JSON.parse(res_status.wiz_book)
+              let collection = document.querySelector(".collection")
+              let li = document.createElement('li')
+              li.innerText = wiz_book.book.name
+              collection.childNodes[1].appendChild(li)
+    })
 }

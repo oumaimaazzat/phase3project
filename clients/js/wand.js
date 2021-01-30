@@ -30,39 +30,28 @@ const renderWand = (wand, wizard) => {
 
     let h5 = document.createElement('h5')
     h5.className = "card-title"
-    h5.id = `name-${wand.id}`
+    h5.id = `wand-${wand.id}`
     h5.innerText = wand.name
 
     let p1 = document.createElement('p')
     p1.className = 'card-text'
-    p1.id = `age-${wand.id}`
+    p1.id = `wood-${wand.id}`
     p1.innerText = `Wood: ${wand.wood}`
 
     let p2 = document.createElement('p')
     p2.className = 'card-text'
-    p2.id = `blood-${wand.id}`
+    p2.id = `length-${wand.id}`
     p2.innerText = `Length: ${wand.length}`
 
     let button = document.createElement('button')
     button.classList.add("btn", "btn-primary", "btn-sm")
-    button
 
-    
-    if (wizard.wand) {
-      if (wizard.wand.id == wand.id) {
-        button.innerText = "Your wand"
-      } else {
-        button.innerText = "You already have one"
-      }
-    } else {
       button.innerText = "Buy it"
       button.addEventListener('click', () => {
       if (button.innerText == "BUY IT") {
-        buyWand(wand)
-        button.innerText = "Bought"
+        buyWand(wand, button)
           }
       })
-    } 
 
 
     container.append(div1)
@@ -72,7 +61,11 @@ const renderWand = (wand, wizard) => {
 }
 
 
-const buyWand = (wand) => {
+const buyWand = (wand, button) => {
+  let form = document.querySelector(`#body-${wand.id}`)
+   if (Object.values(form.children).find((child) => child.id == "alert-wand")){
+            Object.values(form.children).find((child) => child.id == "alert-wand").remove()
+        }
   newWizWand = {
     wizard_id: SESSION_ID,
     wand_id: wand.id
@@ -84,8 +77,17 @@ const buyWand = (wand) => {
     body: JSON.stringify(newWizWand)
   })
   .then(res => res.json())
-  .then(wizWand => {
-    
-    console.log(wizWand)
-  })
+  .then(res_status => {
+            if (res_status.status != 200) {
+                let p = document.createElement('p')
+                p.id = "alert-wand"
+                p.innerText = res_status.message
+                form.appendChild(p)
+            } else {
+              button.innerText = "Bought"
+              wiz_wand = JSON.parse(res_status.wiz_wand)
+              let collection = document.querySelector(".collection")
+              collection.childNodes[0].innerText = `Wand: ${wiz_wand.wand.name}`
+            }
+        })
 }

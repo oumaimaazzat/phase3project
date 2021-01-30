@@ -29,11 +29,15 @@ const proveWizard = () => {
                 let wizard = JSON.parse(res_status.wizard)
                 SESSION_ID = res_status.session_id
                 renderWizard(wizard);
-                renderCollection();
+                renderCollection(wizard);
                 getWands(wizard);
                 getBooks(wizard);
                 form.classList.remove('show')
-                playaudio(0.1);
+                playaudio(0.05);
+                document.querySelector('#wizard-information').style.display = "block"
+                 document.querySelector('#wands-information').style.display = "block"
+                 document.querySelector('#books-information').style.display = "block"
+                document.querySelectorAll(".transition").forEach(t => t.style.display = "block")
             }
         })
         form.reset()
@@ -77,10 +81,16 @@ const addWizard = () => {
                 let wizard = JSON.parse(res_status.wizard)
                 SESSION_ID = res_status.session_id
                 renderWizard(wizard);
-                renderCollection();
+                renderCollection(wizard);
                 getWands(wizard);
                 getBooks(wizard);
+                playaudio(0.05);
                 form.classList.remove('show')
+                
+                 document.querySelector('#wizard-information').style.display = "block"
+                 document.querySelector('#wands-information').style.display = "block"
+                 document.querySelector('#books-information').style.display = "block"
+                document.querySelectorAll(".transition").forEach(t => t.style.display = "block")
             }
         })
        form.reset()
